@@ -9,9 +9,9 @@ public class Video {
 	private boolean rented ;
 
 	public Video(String title, int videoType, int priceCode, Date registeredDate) {
-		this.setTitle(title) ;
-		this.setVideoType(videoType) ;
-		this.setPriceCode(priceCode) ;
+		this.title = title;
+		this.videoType.videoType = videoType;
+		this.priceCode.priceCode = priceCode;
 		this.registeredDate = registeredDate ;
 	}
 
@@ -28,16 +28,8 @@ public class Video {
 		return priceCode.priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
-		this.priceCode.priceCode = priceCode;
-	}
-
 	public String getTitle() {
 		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public boolean isRented() {
@@ -50,9 +42,5 @@ public class Video {
 
 	public int getVideoType() {
 		return videoType.videoType;
-	}
-
-	public void setVideoType(int videoType) {
-		this.videoType.videoType = videoType;
 	}
 }
