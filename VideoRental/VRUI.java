@@ -60,17 +60,18 @@ public class VRUI {
 		}
 	}
 
-	public void returnVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
-
-		Customer foundCustomer = null ;
+	private Customer foundCustomer(String customerName) {
 		for ( Customer customer: customers ) {
 			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
+				return customer;
 			}
 		}
+		return null;
+	}
+
+	public void returnVideo() {
+		System.out.println("Enter customer name: ") ;
+		Customer foundCustomer = foundCustomer(scanner.next()) ;
 		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
