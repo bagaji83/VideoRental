@@ -96,4 +96,14 @@ public class Customer {
 		}
 		return totalPoint;
 	}
+
+	public void returnVideo(String videoTitle) {
+		List<Rental> rentals = getRentals();
+		for (Rental rental : rentals) {
+			if (rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented()) {
+				rental.returnVideo();
+				rental.getVideo().setRented(false);
+			}
+		}
+	}
 }
