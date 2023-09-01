@@ -53,23 +53,7 @@ public class Customer {
 		List<Rental> rentals = getRentals();
 
 		for (Rental each : rentals) {
-			double eachCharge = 0;
-			int daysRented = 0;
-
-			daysRented = Rental.getDaysRented(each);
-
-			switch (each.getVideo().getPriceCode()) {
-				case PriceCode.REGULAR:
-					eachCharge += 2;
-					if (daysRented > 2)
-						eachCharge += (daysRented - 2) * 1.5;
-					break;
-				case PriceCode.NEW_RELEASE:
-					eachCharge = daysRented * 3;
-					break;
-			}
-
-			totalCharge += eachCharge;
+			totalCharge += each.calRentalCharge();
 		}
 		return totalCharge;
 	}
@@ -79,20 +63,7 @@ public class Customer {
 		List<Rental> rentals = getRentals();
 
 		for (Rental each : rentals) {
-			int eachPoint = 0 ;
-			int daysRented = 0;
-
-			daysRented = Rental.getDaysRented(each);
-
-			eachPoint++;
-
-			if ((each.getVideo().getPriceCode() == PriceCode.NEW_RELEASE) )
-				eachPoint++;
-
-			if ( daysRented > each.getDaysRentedLimit() )
-				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty()) ;
-
-			totalPoint += eachPoint ;
+			totalPoint += each.calRentalPoint() ;
 		}
 		return totalPoint;
 	}
