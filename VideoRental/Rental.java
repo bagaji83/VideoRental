@@ -24,6 +24,14 @@ public class Rental {
 		return video;
 	}
 
+	public boolean isVideoExist(String videoTitle) {
+		return video.getTitle().equals(videoTitle);
+	}
+
+	public boolean isRented() {
+		return video.isRented();
+	}
+
 	public int getStatus() {
 		return status;
 	}

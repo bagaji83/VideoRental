@@ -100,7 +100,7 @@ public class Customer {
 	public void returnVideo(String videoTitle) {
 		List<Rental> rentals = getRentals();
 		for (Rental rental : rentals) {
-			if (rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented()) {
+			if (rental.isVideoExist(videoTitle) && rental.isRented()) {
 				rental.returnVideo();
 				rental.getVideo().setRented(false);
 			}
