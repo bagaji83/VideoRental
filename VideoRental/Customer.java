@@ -45,13 +45,9 @@ public class Customer {
 			int eachPoint = 0 ;
 			int daysRented = 0;
 
-			if (each.getStatus() == 1) { // returned Video
-				long diff = each.getReturnDate().getTime() - each.getRentDate().getTime();
-				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-			} else { // not yet returned
-				long diff = new Date().getTime() - each.getRentDate().getTime();
-				daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-			}
+			long diff = ((each.getStatus() == 1 ? each.getReturnDate().getTime() : new Date().getTime());
+			diff -= each.getRentDate().getTime();
+			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 
 			switch (each.getVideo().getPriceCode()) {
 			case PriceCode.REGULAR:
