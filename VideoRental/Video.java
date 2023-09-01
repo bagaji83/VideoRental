@@ -1,16 +1,9 @@
 import java.util.Date;
 
 public class Video {
+	private final VideoType videoType = new VideoType();
+	private final PriceCode priceCode = new PriceCode();
 	private String title ;
-
-	private int priceCode ;
-	public static final int REGULAR = 1 ;
-	public static final int NEW_RELEASE =2 ;
-
-	private int videoType ;
-	public static final int VHS = 1 ;
-	public static final int CD = 2 ;
-	public static final int DVD = 3 ;
 
 	private Date registeredDate ;
 	private boolean rented ;
@@ -24,19 +17,19 @@ public class Video {
 
 	public int getLateReturnPointPenalty() {
 		int pentalty = 0 ;
-		switch ( videoType ) {
-			case VHS: pentalty = 1 ; break ;
-			case CD: pentalty = 2 ; break ;
-			case DVD: pentalty = 3 ; break ;
+		switch (videoType.videoType) {
+			case VideoType.VHS: pentalty = 1 ; break ;
+			case VideoType.CD: pentalty = 2 ; break ;
+			case VideoType.DVD: pentalty = 3 ; break ;
 		}
 		return pentalty ;
 	}
 	public int getPriceCode() {
-		return priceCode;
+		return priceCode.priceCode;
 	}
 
 	public void setPriceCode(int priceCode) {
-		this.priceCode = priceCode;
+		this.priceCode.priceCode = priceCode;
 	}
 
 	public String getTitle() {
@@ -56,10 +49,10 @@ public class Video {
 	}
 
 	public int getVideoType() {
-		return videoType;
+		return videoType.videoType;
 	}
 
 	public void setVideoType(int videoType) {
-		this.videoType = videoType;
+		this.videoType.videoType = videoType;
 	}
 }
