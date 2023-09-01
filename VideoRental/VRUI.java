@@ -20,8 +20,8 @@ public class VRUI {
 				case 0: quit = true ; break ;
 				case 1: ui.listCustomers() ; break ;
 				case 2: ui.listVideos() ; break ;
-				case 3: ui.register("customer") ; break ;
-				case 4: ui.register("video") ; break ;
+				case 3: ui.registerCustomer("customer") ; break ;
+				case 4: ui.registerVideo("video") ; break ;
 				case 5: ui.rentVideo() ; break ;
 				case 6: ui.returnVideo() ; break ;
 				case 7: ui.getCustomerReport() ; break;
@@ -60,17 +60,18 @@ public class VRUI {
 		}
 	}
 
-	public void returnVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
-
-		Customer foundCustomer = null ;
+	private Customer foundCustomer(String customerName) {
 		for ( Customer customer: customers ) {
 			if ( customer.getName().equals(customerName)) {
-				foundCustomer = customer ;
-				break ;
+				return customer;
 			}
 		}
+		return null;
+	}
+
+	public void returnVideo() {
+		System.out.println("Enter customer name: ") ;
+		Customer foundCustomer = foundCustomer(scanner.next()) ;
 		if ( foundCustomer == null ) return ;
 
 		System.out.println("Enter video title to return: ") ;
@@ -181,14 +182,19 @@ public class VRUI {
 		foundCustomer.setRentals(customerRentals);
 	}
 
-	public void register(String object) {
-		if ( object.equals("customer") ) {
-			System.out.println("Enter customer name: ") ;
+	public void registerCustomer(String object) {
+		if (object.equals("customer")) {
+			System.out.println("Enter customer name: ");
 			String name = scanner.next();
-			Customer customer = new Customer(name) ;
-			customers.add(customer) ;
+			Customer customer = new Customer(name);
+			customers.add(customer);
 		}
-		else {
+		else{
+			System.out.println("cancel register customer");
+		}
+	}
+	public void registerVideo(String object) {
+		if (object.equals("video")) {
 			System.out.println("Enter video title to register: ") ;
 			String title = scanner.next() ;
 
@@ -201,6 +207,9 @@ public class VRUI {
 			Date registeredDate = new Date();
 			Video video = new Video(title, videoType, priceCode, registeredDate) ;
 			videos.add(video) ;
+		}
+		else{
+			System.out.println("cancel register video");
 		}
 	}
 
